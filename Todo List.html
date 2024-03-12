@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <title>To Do App</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <h1>To Do List</h1>
+        <div id="to-do-list">
+            <input type="text" class="to-do-input" placeholder="What are you going to do?"/>
+            <input type="submit" value="Add" id="to-do-submit"/>   
+        </div>
+    </header>
+
+    <main>
+        <h2>Tasks</h2>
+        <div id="list">
+        </div>
+    </main>
+    <script>
+        document.querySelector('#to-do-submit').onclick = function(){
+        if(document.querySelector('#to-do-list input').value.length == 0){
+        alert('Enter Task')
+    }
+    else{
+        document.querySelector('#list').innerHTML += `
+            <div class = "task">
+                <span class='new_task'>
+                ${document.querySelector('#to-do-list input').value}
+                </span>
+                <button class='delete'>Delete</button>
+            </div>
+        `;
+        var current_task= document.querySelectorAll('.delete');
+        for(var i=0; i<current_task.length; i++){
+            current_task[i].onclick = function(){
+                this.parentNode.remove();
+            }
+        }
+    }
+}
+    </script>
+</body>
+</html>
